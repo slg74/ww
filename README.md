@@ -10,4 +10,6 @@ test_fww.pl - test code.
 REQUIRES - File::chmod -> cpan> install File::chmod
 
 
+scott@scott-VirtualBox:~/ww/My$ perlcritic ww.pm
+ww.pm source OK
 
