@@ -8,8 +8,6 @@ use lib dirname(dirname abs_path $0) . '/lib';
 
 use My::ww qw(get_wwritable_files unset_wwritable); 
 
-$File::chmod::UMASK = 0;
-
 my $args = @ARGV;
 
 if (!$args) {
