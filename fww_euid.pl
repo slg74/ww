@@ -46,7 +46,7 @@ if ($dir and !$verbose) {
 if ($dir and $verbose =~ /--verbose/) {
 	my @list = get_wwritable_files($dir);
 	for (@list) {
-		print "$_: file is globally writeable.\n";
+		print "$_: file is globally writable.\n";
 	}
 
 	for (@list) {
