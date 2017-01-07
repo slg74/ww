@@ -8,23 +8,26 @@ use lib dirname(dirname abs_path $0) . '/lib';
 
 use My::ww qw(get_wwritable_files unset_wwritable); 
 
+sub check_user {
+	my $username = getpwuid($<);
+	if ($username !~ "root") {
+		print "Must run as root or via sudo. Exiting.\n";
+		exit 1;
+	}
+}
+
+check_user(); 
+
 my $args = @ARGV;
 
 if (!$args) {
-	print "Usage: ./fww_euid.pl [dir] [--verbose] [userid]\n"; 
+	print "Usage: ./fww [dir] [--verbose]\n"; 
+	print "       ./fww /tmp --verbose\n"; 
+	print " -or-  ./fww /tmp\n"; 
 	exit 1;
 }
 
-my ($dir, $verbose, $user) = @ARGV;
-
-if (!$user) {
-	print "Must supply a userid for this script.\n"; 
-	exit 1;
-}
-
-my $uid = getpwnam($user);
-$> = $uid;
-print "Current effective uid: $uid\n"; 
+my ($dir, $verbose) = @ARGV;
 
 if (!$dir) {
 	print "No directory supplied. Exiting.\n";
