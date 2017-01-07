@@ -1,7 +1,7 @@
 # ww
 
-fww.pl - find world writable files.
-fww_euid.pl - find world writable files using the effective uid of supplied userid.
+fww.pl - find world writable files.  
+fww_euid.pl - find world writable files using the effective uid of supplied userid.  
 
 My/ww.pm - the module. 
 
