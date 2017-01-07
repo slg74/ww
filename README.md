@@ -1,7 +1,8 @@
 # ww
 
-fww.pl - find world writable files.  
-fww_euid.pl - find world writable files using the effective uid of supplied userid.  
+fww.pl - find world writable files and turn off the write bit.  
+fww_euid.pl - find world writable files using the effective uid of supplied
+userid, again, turn off the universal write bit.  
 
 My/ww.pm - the module. 
 
