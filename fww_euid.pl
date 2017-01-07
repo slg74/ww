@@ -50,5 +50,6 @@ if ($dir and $verbose) {
 
 	for (@list) {
 		print "$_: disabling global write permission.\n";
+		unset_wwritable($_); 
 	}
 }
