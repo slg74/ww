@@ -15,7 +15,7 @@ if (!$args) {
 	exit 1;
 }
 
-my ($dir, $user, $verbose) = @ARGV;
+my ($dir, $verbose, $user) = @ARGV;
 
 if (!$user) {
 	print "Must supply a userid for this script.\n"; 
