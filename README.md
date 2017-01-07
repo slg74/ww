@@ -10,6 +10,7 @@ test_fww.pl - test code.
 REQUIRES - File::chmod -> cpan> install File::chmod
 
 
+perlcritic output:  
 
 for i in fww.pl fww_euid.pl test_fww.pl My/ww.pm; do perlcritic $i; done
 
