@@ -7,7 +7,7 @@ My/ww.pm - the module.
 
 test_fww.pl - test code. 
 
-REQIURES - File::chmod -> cpan> install File::chmod
+REQUIRES - File::chmod -> cpan> install File::chmod
 
 
 
