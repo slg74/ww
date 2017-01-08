@@ -23,8 +23,8 @@ sub get_world_writable_files {
 }
 
 sub unset_world_writable {
-    my $f = shift;
-    chmod("o-w", $f); 
+    my $file = shift;
+    chmod("o-w", $file); 
 }
 
 1;
