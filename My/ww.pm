@@ -5,24 +5,24 @@ use warnings;
 use File::chmod;
 use Exporter qw(import);
 
-our @EXPORT_OK = qw(get_wwritable_files unset_wwritable);
+our @EXPORT_OK = qw(get_world_writable_files unset_world_writable);
 
 $File::chmod::UMASK = 0;
 
-sub get_wwritable_files {
+sub get_world_writable_files {
     my $dir = shift;
-    my @ww_filenames;
+    my @world_writable_files;
     open my $in, '-|', "find $dir -perm -o=w -exec ls -l {} \\;", or die "cannot run: $!";
     while (<$in>) {
         my @line = split;
-        my $f = $line[8];
-        push @ww_filenames, $f if $f;
+        my $filename = $line[8];
+        push @world_writable_files, $filename if $filename;
     }
     close $in;
-    return @ww_filenames;
+    return @world_writable_files;
 }
 
-sub unset_wwritable {
+sub unset_world_writable {
     my $f = shift;
     chmod("o-w", $f); 
 }
