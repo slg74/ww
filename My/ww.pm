@@ -11,6 +11,7 @@ our @EXPORT_OK = qw(get_world_writable unset_world_writable);
 # make sure umask doesn't bite us
 $File::chmod::UMASK = 0;
 
+
 sub get_world_writable {
     my $dir = shift;
     my @world_writable;
@@ -30,6 +31,7 @@ sub get_world_writable {
     return @world_writable
 }
 
+
 sub unset_world_writable {
     my $file = shift;
     my $st   = stat($file); 
@@ -43,5 +45,6 @@ sub unset_world_writable {
         chmod($mode & ~S_IWOTH, $file);
     }
 }
+
 
 1;

@@ -7,7 +7,9 @@ use Cwd qw(abs_path);
 use lib dirname(dirname abs_path $0) . '/lib';
 use feature qw(say); 
 
+
 use My::ww qw(get_world_writable unset_world_writable); 
+
 
 my $args = @ARGV;
 
@@ -16,6 +18,7 @@ if (!$args) {
     exit 1;
 }
 
+
 my ($dir, $verbose, $user) = @ARGV;
 
 if (!$user) {
@@ -23,13 +26,16 @@ if (!$user) {
     exit 1;
 }
 
+
 my $uid = getpwnam($user);
 $> = $uid;
+
 
 if (!$dir) {
     say "No directory supplied. Exiting.";
     exit 1;
 }
+
 
 if ($dir and !$verbose) {
     my @list = get_world_writable($dir);
@@ -42,6 +48,7 @@ if ($dir and !$verbose) {
     }
     exit 1;
 } 
+
 
 if ($dir and $verbose =~ /--verbose/) {
     my @list = get_world_writable($dir);
