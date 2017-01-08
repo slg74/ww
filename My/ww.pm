@@ -33,7 +33,7 @@ sub unset_world_writable {
     my $st   = stat($file); 
     my $mode;
 
-    # if we get a stat(), and the current global mode with 
+    # if we get a stat(), logical AND the current global mode with 
     # the negative permission set, ~S_IWOTH. 
     if ($st) {
         $mode = $st->mode;

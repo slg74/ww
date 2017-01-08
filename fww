@@ -57,4 +57,5 @@ if ($dir and $verbose =~ /--verbose/) {
         say "$_: disabling global write permission."; 
         unset_world_writable($_); 
     }
+    exit 1;
 }
