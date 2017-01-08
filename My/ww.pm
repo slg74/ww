@@ -2,7 +2,8 @@ package My::ww;
 
 use strict;
 use warnings;
-use File::chmod;
+use File::stat;
+use Fcntl qw( :mode );
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(get_world_writable unset_world_writable);
@@ -24,7 +25,12 @@ sub get_world_writable {
 
 sub unset_world_writable {
     my $file = shift;
-    chmod("o-w", $file), if $file; 
+    my $st   = stat($file); 
+    my $mode;
+    if ($st) {
+        $mode = $st->mode;
+        chmod($mode & ~S_IWOTH, $file);
+    }
 }
 
 1;

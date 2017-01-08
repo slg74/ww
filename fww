@@ -5,6 +5,7 @@ use warnings;
 use File::Basename qw(dirname);
 use Cwd qw(abs_path);
 use lib dirname(dirname abs_path $0) . '/lib';
+use feature qw(say);
 
 use My::ww qw(get_world_writable unset_world_writable); 
 
@@ -21,23 +22,23 @@ check_user();
 my $args = @ARGV;
 
 if (!$args) {
-    print "Usage: ./fww [dir] [--verbose]\n"; 
-    print "       ./fww /tmp --verbose\n"; 
-    print " -or-  ./fww /tmp\n"; 
+    say "Usage: ./fww [dir] [--verbose]"; 
+    say "       ./fww /tmp --verbose"; 
+    say " -or-  ./fww /tmp"; 
     exit 1;
 }
 
 my ($dir, $verbose) = @ARGV;
 
 if (!$dir) {
-    print "No directory supplied. Exiting.\n";
+    say "No directory supplied. Exiting.";
     exit 1;
 }
 
 if ($dir and !$verbose) {
     my @list = get_world_writable($dir);
     for (@list) {
-        print $_, "\n"; 
+        say "$_";
     }
     
     for (@list) {
@@ -49,11 +50,11 @@ if ($dir and !$verbose) {
 if ($dir and $verbose =~ /--verbose/) {
     my @list = get_world_writable($dir);
     for (@list) {
-        print "$_: file is globally writable.\n";
+        say "$_: file is globally writable."
     }
 
     for (@list) {
-        print "$_: disabling global write permission.\n";
+        say "$_: disabling global write permission."; 
         unset_world_writable($_); 
     }
 }

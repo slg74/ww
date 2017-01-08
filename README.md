@@ -7,9 +7,6 @@ My/ww.pm - the module.
 
 test_fww - test code. 
 
-REQUIRES - File::chmod -> cpan> install File::chmod
-
-
 perlcritic output:  
 
 for i in fww fww_euid test_fww My/ww.pm; do perlcritic $i; done
