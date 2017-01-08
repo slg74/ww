@@ -7,12 +7,12 @@ use File::Basename qw(dirname);
 use Cwd qw(abs_path);
 use lib dirname(dirname abs_path $0) . '/lib';
 
-use My::ww qw(get_wwritable_files unset_wwritable); 
+use My::ww qw(get_world_writable_files unset_world_writable); 
 
 
 BEGIN { use_ok("My::ww") }
-can_ok("My::ww", "get_wwritable_files");
-can_ok("My::ww", "unset_wwritable");
+can_ok("My::ww", "get_world_writable_files");
+can_ok("My::ww", "unset_world_writable");
 
 mkdir "/tmp/test";
 
@@ -21,7 +21,7 @@ chmod 0777, "/tmp/test/*";
 my $dir = "/tmp/test";
 my $verbose = 0;
 
-my $fww = My::ww::get_wwritable_files($dir, $verbose);
-my $uww = My::ww::unset_wwritable($dir, $verbose);
+my $find_world_writable = My::ww::get_world_writable_files($dir, $verbose);
+my $unset_world_writable = My::ww::unset_world_writable($dir, $verbose);
 
 done_testing;
