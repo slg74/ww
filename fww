@@ -12,7 +12,7 @@ use My::ww qw(get_world_writable unset_world_writable);
 sub check_user {
     my $username = getpwuid($<);
     if ($username !~ "root") {
-        print "Must run as root or via sudo. Exiting.\n";
+        say "Must run as root or via sudo. Exiting.";
         exit 1;
     }
 }

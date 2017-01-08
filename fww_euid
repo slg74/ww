@@ -19,7 +19,7 @@ if (!$args) {
 my ($dir, $verbose, $user) = @ARGV;
 
 if (!$user) {
-    print "Must supply a userid for this script.\n"; 
+    say "Must supply a userid for this script."; 
     exit 1;
 }
 
