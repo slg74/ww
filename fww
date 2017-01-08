@@ -9,11 +9,11 @@ use lib dirname(dirname abs_path $0) . '/lib';
 use My::ww qw(get_wwritable_files unset_wwritable); 
 
 sub check_user {
-	my $username = getpwuid($<);
-	if ($username !~ "root") {
-		print "Must run as root or via sudo. Exiting.\n";
-		exit 1;
-	}
+    my $username = getpwuid($<);
+    if ($username !~ "root") {
+        print "Must run as root or via sudo. Exiting.\n";
+        exit 1;
+    }
 }
 
 check_user(); 
@@ -21,39 +21,39 @@ check_user();
 my $args = @ARGV;
 
 if (!$args) {
-	print "Usage: ./fww [dir] [--verbose]\n"; 
-	print "       ./fww /tmp --verbose\n"; 
-	print " -or-  ./fww /tmp\n"; 
-	exit 1;
+    print "Usage: ./fww [dir] [--verbose]\n"; 
+    print "       ./fww /tmp --verbose\n"; 
+    print " -or-  ./fww /tmp\n"; 
+    exit 1;
 }
 
 my ($dir, $verbose) = @ARGV;
 
 if (!$dir) {
-	print "No directory supplied. Exiting.\n";
-	exit 1;
+    print "No directory supplied. Exiting.\n";
+    exit 1;
 }
 
 if ($dir and !$verbose) {
-	my @list = get_wwritable_files($dir);
-	for (@list) {
-		print $_, "\n"; 
-	}
-	
-	for (@list) {
-		unset_wwritable($_); 
-	}
-	exit 1;
+    my @list = get_wwritable_files($dir);
+    for (@list) {
+        print $_, "\n"; 
+    }
+    
+    for (@list) {
+        unset_wwritable($_); 
+    }
+    exit 1;
 } 
 
 if ($dir and $verbose =~ /--verbose/) {
-	my @list = get_wwritable_files($dir);
-	for (@list) {
-		print "$_: file is globally writable.\n";
-	}
+    my @list = get_wwritable_files($dir);
+    for (@list) {
+        print "$_: file is globally writable.\n";
+    }
 
-	for (@list) {
-		print "$_: disabling global write permission.\n";
-		unset_wwritable($_); 
-	}
+    for (@list) {
+        print "$_: disabling global write permission.\n";
+        unset_wwritable($_); 
+    }
 }

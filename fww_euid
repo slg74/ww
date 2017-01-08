@@ -11,15 +11,15 @@ use My::ww qw(get_wwritable_files unset_wwritable);
 my $args = @ARGV;
 
 if (!$args) {
-	print "Usage: ./fww_euid [dir] [--verbose] [userid]\n"; 
-	exit 1;
+    print "Usage: ./fww_euid [dir] [--verbose] [userid]\n"; 
+    exit 1;
 }
 
 my ($dir, $verbose, $user) = @ARGV;
 
 if (!$user) {
-	print "Must supply a userid for this script.\n"; 
-	exit 1;
+    print "Must supply a userid for this script.\n"; 
+    exit 1;
 }
 
 my $uid = getpwnam($user);
@@ -27,30 +27,30 @@ $> = $uid;
 print "Current effective uid: $uid\n"; 
 
 if (!$dir) {
-	print "No directory supplied. Exiting.\n";
-	exit 1;
+    print "No directory supplied. Exiting.\n";
+    exit 1;
 }
 
 if ($dir and !$verbose) {
-	my @list = get_wwritable_files($dir);
-	for (@list) {
-		print $_, "\n"; 
-	}
-	
-	for (@list) {
-		unset_wwritable($_); 
-	}
-	exit 1;
+    my @list = get_wwritable_files($dir);
+    for (@list) {
+        print $_, "\n"; 
+    }
+    
+    for (@list) {
+        unset_wwritable($_); 
+    }
+    exit 1;
 } 
 
 if ($dir and $verbose =~ /--verbose/) {
-	my @list = get_wwritable_files($dir);
-	for (@list) {
-		print "$_: file is globally writable.\n";
-	}
+    my @list = get_wwritable_files($dir);
+    for (@list) {
+        print "$_: file is globally writable.\n";
+    }
 
-	for (@list) {
-		print "$_: disabling global write permission.\n";
-		unset_wwritable($_); 
-	}
+    for (@list) {
+        print "$_: disabling global write permission.\n";
+        unset_wwritable($_); 
+    }
 }
