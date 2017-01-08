@@ -15,7 +15,9 @@ sub get_world_writable {
     my $dir = shift;
     my @world_writable;
 
-    open my $in, '-|', "find $dir -perm -2 ! -type l -ls", or die; 
+    open my $in, '-|', "find $dir -perm -2 ! -type l -ls"
+        or die "cannot run: $!"; 
+
     while (<$in>) {
         # get 10th column of find output       
         my @line     = split;
@@ -33,7 +35,8 @@ sub unset_world_writable {
     my $st   = stat($file); 
     my $mode;
 
-    # if we get a stat(), logical AND the current global mode with 
+    # if we get a stat(), logical AND 
+    # the file's current global mode with 
     # the negative permission set, ~S_IWOTH. 
     if ($st) {
         $mode = $st->mode;
@@ -42,4 +45,3 @@ sub unset_world_writable {
 }
 
 1;
-
