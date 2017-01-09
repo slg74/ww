@@ -21,7 +21,7 @@ sub get_world_writable {
 
     while (<$in>) {
         # get 10th column of find output       
-        my @line     = split;
+        my @line = split;
         my $file = $line[10];
 
         push @world_writable, $file if $file;
